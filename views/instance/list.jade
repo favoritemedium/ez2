@@ -22,11 +22,13 @@ mixin instance-list(id, instances)
           if 'running' == id
             a.pure-button.button-warning(
               href='/instances/stop/' + instance.InstanceId
+            , onclick='return confirm("Stop instance?")'
             ) Stop
 
           if 'stopped' == id
             a.pure-button.button-secondary(
               href='/instances/start/' + instance.InstanceId
+            , onclick='return confirm("Start instance?")'  
             ) Start
             a.pure-button.button-warning(
               href='/instances/terminate/' + instance.InstanceId
