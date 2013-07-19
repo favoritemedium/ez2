@@ -1,0 +1,218 @@
+body {
+  color: #333;
+}
+a {
+  text-decoration: none;
+  color: #1b98f8;
+}
+
+* { box-sizing: border-box; }
+/* LAYOUT CSS */
+#layout { position: relative; }
+#layout.authenticated { padding-left:200px; }
+
+#nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  margin-left: -200px; /* "left col (nav + list)" width */
+  width: 200px;
+  background: rgb(37, 42, 58);
+  text-align: center;
+  padding: 2em 0;
+}
+#nav h1 {
+  font-size: 19px
+  margin: 0;
+  font-weight: normal;
+  a { color: #fff; }
+}
+
+#main { width: 100%; }
+#main form { padding: 25px; }
+.pure-button { margin-right: 4px; }
+
+/* HELPER CLASSES */
+.button-primary {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.button-primary {
+  color: #fff;
+  background: #1b98f8;
+  margin: 1em 0;
+}
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+// this is a green
+.button-success { background: rgb(28, 184, 65); }
+// this is a maroon
+.button-error { background: rgb(202, 60, 60); }
+// this is an orange
+.button-warning { background: rgb(223, 117, 20); }
+// this is a light blue
+.button-secondary { background: rgb(66, 184, 221); }
+
+/* Auth */
+#auth-screen {
+  text-align: center;
+  margin-top: 20px;
+  a.auth {
+    font-size: 25px;
+    vertical-align: middle;
+    border-radius: 100%;
+    color: #dd4b38;
+  }
+  a.auth:hover,
+  a.auth:active {
+    -webkit-animation: zoom-button 2s ease-out;
+       -moz-animation: zoom-button 2s ease-out;
+            animation: zoom-button 2s ease-out;
+  }
+}
+
+.instance-status {
+  color: #fff;
+  font-size: 8px;
+  font-weight: normal;
+  text-transform: uppercase;
+  padding: 3px 5px;
+  border-radius: 2px;
+  display: inline-block;
+
+  &.running { background-color: #1cb841; }
+  &.stopping,
+  &.stopped,
+  &.shutting-down { background-color: #ca3c3c; }
+  &.terminating,
+  &.terminated {
+    color: #333;
+    background-color: #ccc;
+  }
+}
+
+.instances article {
+  min-width: 80px;
+  overflow: hidden;
+  padding: 25px;
+  position: relative;
+
+  .info { display: inline-block; }
+  .actions {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+  }
+  .status {
+    font-size: 10px;
+    padding: 3px 25px;
+    background-color: #f0f0f0;
+    min-height: 20px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+  }
+  .uptime {
+    margin: 3px 0 0;
+    font-size: 12px;
+    span { color: #888; }
+  }
+  .by { float: right; }
+  .dns {
+    color: #888;
+    font-size: 10px;
+    margin: 0;
+  }
+  .instance-status { vertical-align: middle; }
+}
+
+.tabs {
+  width: 100%;
+
+  a {
+    color: #333;
+    width: 50%;
+    padding: 15px 10px 5px 25px;
+    display: inline-block;
+    margin-right: 4px;
+    -webkit-transition: background-color .5s;
+       -moz-transition: background-color .5s;
+            transition: background-color .5s;
+  }
+  a + a { margin-right: -4px; }
+
+  .running {
+    border-bottom: 2px solid #1cb841;
+    &.active,
+    &:active,
+    &:hover { background-color: rgba(#1cb841, .1); }
+  }
+  .stopped {
+    border-bottom: 2px solid #ca3c3c;
+    &.active,
+    &:active,
+    &:hover { background-color: rgba(#ca3c3c, .1); }
+  }
+}
+.tab-content { display: none; }
+.tab-content:target { display: block; }
+
+
+
+@media (max-width: 867px) {
+  #nav, #main {
+    width: auto;
+    position: static;
+    margin-left: 0;
+    padding-bottom: 3em;
+  }
+  #layout.authenticated { padding-left: 0; }
+  #list {
+    width: auto;
+    height: 33%;
+    border-bottom: 1px solid #ddd;
+  }
+  #nav {
+    text-align: center;
+    padding: .75em 25px;
+
+    a { margin: 0; }
+    h1 {
+      top: 20px;
+      left: 25px;
+      position: absolute;
+    }
+    .logout {
+      top: 1.25em;
+      right: 25px;
+      position: absolute;
+    }
+  }
+  .dns { display: block; }
+}
+@media (max-width: 480px) {
+  .instances article {
+    .status { text-align: left; }
+    .actions {
+      margin: 10px 60px;
+      position: static;
+
+      .pure-button {
+        display: block;
+        margin-top: 5px;
+        &:first-child { margin-top: 15px; }
+        &:last-child { margin-bottom: 20px; }
+      }
+    }
+  }
+}

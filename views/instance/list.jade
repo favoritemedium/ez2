@@ -1,0 +1,55 @@
+
+extends ../layout
+
+mixin instance-list(id, instances)
+  div.tab-content(id=id + '-instances')
+    each instance in instances
+      - var name = instance.Tags[0] && instance.Tags[0].Key == "Name" ? instance.Tags[0].Value : 'Untitled instance'
+      article
+        .info
+          | #{name} (#{instance.InstanceType})&nbsp;
+          if instance.PublicDnsName
+            span.dns #{instance.PublicDnsName}
+          if 'stopped' == id
+            .instance-status(class=instance.State.Name.toLowerCase().replace(/\s/, '-'))
+              = instance.State.Name
+
+          p.uptime
+            span Uptime:&nbsp;
+            = instance.upTime
+
+        .actions
+          if 'running' == id
+            a.pure-button.button-warning(
+              href='/instances/stop/' + instance.InstanceId
+            ) Stop
+
+          if 'stopped' == id
+            a.pure-button.button-secondary(
+              href='/instances/start/' + instance.InstanceId
+            ) Start
+            a.pure-button.button-warning(
+              href='/instances/terminate/' + instance.InstanceId
+            , onclick='return confirm("Terminate instance?")'
+            ) Terminate
+
+        .status
+          span.up
+          if (instance.expiredDate)
+            span.expiry expire on:&nbsp;
+              span= new Date(instance.expiredDate).toISOString().replace(/T/, ' ').replace(/\..+/, '')
+          if (instance.name)
+            span.by by:&nbsp;
+              span
+                a(href="mailto:"+instance.email)
+                  = instance.name
+
+block content
+  .tabs
+    a.running(href='#running-instances') Running
+    a.stopped(href='#stopped-instances') Stopped
+
+  .instances
+    mixin instance-list('running', instances.running)
+    mixin instance-list('stopped', instances.stopped)
+

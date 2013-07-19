@@ -1,0 +1,6 @@
+{
+ "accessKeyId": "ID-TO-CHANGE",
+ "secretAccessKey": "KEY-TO-CHANGE",
+ "region": "REGION-TO-CHANGE",
+ "maxRetries": 3
+}

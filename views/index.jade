@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  #auth-screen.row
+      p Login with your account
+      a.auth(href='/auth/google') Google+
+      if authError
+        div.alert-box.alert.radius= authError

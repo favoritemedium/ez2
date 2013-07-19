@@ -1,0 +1,26 @@
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='http://yui.yahooapis.com/pure/0.2.1/pure-min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    if authenticated
+      #layout.content.authenticated
+        #nav
+          h1
+            a(href='/') EZ2
+          .nav-inner
+            a.pure-button.button-primary(href='/instances/create')
+              | Create Instance
+            a.logout(href='/logout') logout
+
+        #main
+          block content
+    else
+      #layout.content
+        #main
+          block content
+
+    script(src='/javascripts/matchesSelector.polyfill.js')
+    script(src="/javascripts/index.js")

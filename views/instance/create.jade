@@ -1,0 +1,31 @@
+
+extends ../layout
+
+block content
+
+
+  form.pure-form.pure-form-stacked(method='post', action='create')
+    fieldset
+      legend creating new instances
+    div.pure-control-group
+      label Number of Instances:
+        select(name='instances', type='select')
+          repeation = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ]
+          for item in repeation
+            option #{item}
+
+    div.pure-control-group
+      label Instance Type:
+        select(name='type', type='select')
+          repeation = [ 't1.micro', 'm1.small', 'm1.medium', 'm1.large']
+          for item in repeation
+            option #{item}
+
+    div.pure-controls
+      br
+      button.pure-button.pure-button-primary(type='submit')
+        | Create Instances
+      br
+      br
+      br
+      a(href='/instances') cancel
