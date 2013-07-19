@@ -7,7 +7,7 @@ EZ2 is a simplified web console for Amazon EC2 console. Currently it has provisi
 
 Install the dependencies below before you get started.
 
-- [Node.JS](nodejs.org) (comes with NPM)
+- [Node.JS](http://nodejs.org/) (comes with NPM)
 - [Redis](http://redis.io/)
 
 
