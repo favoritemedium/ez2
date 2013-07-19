@@ -25,4 +25,4 @@ Edit config.json and put in the required key and secret, as well as the desired 
 
 ## Run the app
 
-Run 'node app' to start the application. Confirm with accessing the selected region and checking the EC2 instances in the Amazon console.
+Run `node app` to start the application. Confirm with accessing the selected region and checking the EC2 instances in the Amazon console.
